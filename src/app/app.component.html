@@ -1,20 +1,54 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
+  <div class="kegDiv" *ngFor="let keg of kegs">
+    <h2 class="brandHeader">{{keg.brand}}</h2>
+    <h5>{{keg.name}}</h5>
+    <p>{{keg.type}}</p>
+    <p>{{keg.alcoholContent}}% alcohol content</p>
+    <p id="priceTag" [class]="fiveDollarPint(keg)">${{keg.price}} / {{keg.pourVolumn}} pint</p>
 
+    <p [class]="alertTen(keg)">{{keg.kegVolumn}}</p>
+
+
+    <button (click)="editName(keg)">Edit Name</button>
+    <button (click)="pourBeer(keg)">Pint count</button>
+    <button (click)="newTap(keg)">New Tap</button>
+
+  </div>
+</div>
+<div class="editAndNew">
+
+
+  <div class="nameEdit" *ngIf="selectedKeg">
+    <h1>{{selectedKeg.brand}}</h1>
+    <label>Enter New Keg Name for:</label>
+    <input type="text" [(ngModel)]="selectedKeg.name">
+    <br>
+    <label>Edit Beer Type</label>
+    <input type="text" [(ngModel)]="selectedKeg.type">
+
+    <button (click)=finishEditing()>Submit</button>
+  </div>
+
+
+  <!-- form to add new beer to objects -->
+  <div [class]="newBeerDiv">
+
+    <label for="brand">Beer Brand</label>
+    <input type="text" id="brand">
+    <br>
+    <label for="name">Beer Name</label>
+    <input type="text" id="name">
+    <br>
+    <label for="price">Beer Price</label>
+    <input type="number" id="price">
+    <br>
+    <label for="content">Alcohol Content</label>
+    <input type="text" id="content">
+    <br>
+    <label for="type">Beer Type</label>
+    <input type="text" id="type">
+    <br>
+    <button (click)=newBeer()>Submit</button>
+</div>
+  </div>
