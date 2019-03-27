@@ -60,8 +60,8 @@ export class AppComponent {
 
 
 
-  pourBeer(keg){
-    keg.kegVolumn = keg.kegVolumn - keg.pourVolumn;
+  pourBeer(param){
+    param.kegVolumn = param.kegVolumn - 1;
 
   }
 

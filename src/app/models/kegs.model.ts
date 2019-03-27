@@ -1,5 +1,4 @@
 export class Keg {
-  public pourVolumn: number = 1
   public kegVolumn: number = 124
 
   constructor (
